@@ -4,6 +4,7 @@ require 'httpclient'
 module Clowder
   CLOWDER_ROOT_URL = 'http://www.clowder.io'
   CLOWDER_API_URL = CLOWDER_ROOT_URL + '/api'
+  CLOWDER_DELETE_URL = CLOWDER_ROOT_URL + '/delete'
 
   class Client
     attr_reader :api_key
@@ -29,6 +30,11 @@ module Clowder
 
       data[:status] = -1
 
+      send(data)
+    end
+
+    def delete(service_name)
+      data = {url: CLOWDER_DELETE_URL, name: service_name}
       send(data)
     end
 
