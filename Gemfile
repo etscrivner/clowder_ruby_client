@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'httpclient'
+gem 'ruby-duration'
 
 group :development do
   gem 'pry'

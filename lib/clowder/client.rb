@@ -1,3 +1,4 @@
+require 'duration'
 require 'httpclient'
 
 module Clowder
@@ -40,7 +41,21 @@ module Clowder
         data[:value] = data.fetch(:status, 1)
       end
 
+      if data.has_key? :frequency
+        data[:frequency] = frequency_to_seconds(data[:frequency])
+      end
+
       HTTPClient.post url, body: data
+    end
+
+    def frequency_to_seconds(freq)
+      if freq.instance_of? Duration
+        return freq.total
+      elsif freq.instance_of? String
+        return freq.to_i
+      end
+
+      return freq
     end
   end
 end
