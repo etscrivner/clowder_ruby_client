@@ -39,7 +39,7 @@ module Clowder
     end
 
     def send(data)
-      url = data.fetch("url", CLOWDER_API_URL)
+      url = data.fetch(:url, CLOWDER_API_URL)
 
       data[:api_key] = @api_key
 
